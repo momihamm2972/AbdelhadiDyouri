@@ -1,0 +1,6 @@
+<h2>Your Mood History</h2>
+<ul>
+  {% for mood in moods %}
+    <li>{{ mood.date }} - {{ mood.get_mood_display }}</li>
+  {% endfor %}
+</ul>
