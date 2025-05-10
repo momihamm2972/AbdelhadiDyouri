@@ -1,32 +1,27 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Profile</title>
+    <title>User Profile</title>
 </head>
 <body>
     <h1>User Profile</h1>
 
     <p><strong>Username:</strong> {{ username }}</p>
     <p><strong>Date Joined:</strong> {{ date_joined }}</p>
-    
-    <h2>Update Your Info</h2>
-    <form method="post">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit">Save Changes</button>
-    </form>
+    <p><strong>Last Login:</strong> {{ last_login }}</p>
 
-    <h2>Logout</h2>
-    <form method="POST" action="{% url 'logout' %}">
+    <!-- Logout Button -->
+    <form action="{% url 'logout' %}" method="post">
         {% csrf_token %}
         <button type="submit">Logout</button>
     </form>
 
-    <!-- <form method="post" action="{% url 'logout' %}">
+    <!-- Add Mood Buttons -->
+    <h2>How are you feeling?</h2>
+    <form action="{% url 'submit_mood' %}" method="post">
         {% csrf_token %}
-        <button type="submit">Logout</button>
-    </form> -->
-
+        <button type="submit" name="mood" value="smile">😊 Smile</button>
+        <button type="submit" name="mood" value="angry">😡 Angry</button>
+    </form>
 </body>
 </html>
-

@@ -13,8 +13,8 @@ class MoodEntry(models.Model):
     ]
 
     user = models.ForeignKey(User, on_delete=models.CASCADE)
-    mood = models.CharField(max_length=10, choices=MOOD_CHOICES)
+    mood = models.CharField(max_length=50)  # Store mood like 'smile' or 'angry'
     date = models.DateField(auto_now_add=True)
 
     def __str__(self):
-        return f"{self.user.username} - {self.mood} on {self.date}"
+        return f"{self.user.username} - {self.mood} - {self.date}"

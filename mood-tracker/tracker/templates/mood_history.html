@@ -1,6 +1,15 @@
-<h2>Your Mood History</h2>
-<ul>
-  {% for mood in moods %}
-    <li>{{ mood.date }} - {{ mood.get_mood_display }}</li>
-  {% endfor %}
-</ul>
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Mood History</title>
+</head>
+<body>
+    <h1>Mood History</h1>
+    <ul>
+        {% for mood in moods %}
+            <li>{{ mood.date }} - {{ mood.mood }}</li>
+        {% endfor %}
+    </ul>
+    <a href="{% url 'profile' %}">Back to Profile</a>
+</body>
+</html>

@@ -42,23 +42,25 @@ def welcome(request):
 
 @login_required
 def profile(request):
-    if request.method == 'POST':
-        form = UserChangeForm(request.POST, instance=request.user)
-        if form.is_valid():
-            form.save()
-            return redirect('profile')
-    else:
-        form = UserChangeForm(instance=request.user)
-
     context = {
-        'form': form,
         'username': request.user.username,
         'date_joined': request.user.date_joined,
+        'last_login': request.user.last_login,
     }
     return render(request, 'profile.html', context)
-
 
 @login_required
 def default_profile(request):
     return HttpResponse("This is the default profile page.")
+
+@login_required
+def submit_mood(request):
+    if request.method == 'POST':
+        mood = request.POST.get('mood')
+        if mood:
+            # Create a new MoodEntry
+            mood_entry = MoodEntry(user=request.user, mood=mood)
+            mood_entry.save()
+            return redirect('mood_history')  # Redirect to history page after submitting the mood
+    return redirect('profile')  # Redirect to profile if no mood selected
 
