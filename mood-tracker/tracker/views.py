@@ -1,23 +1,24 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm, UserChangeForm
-from .forms import MoodEntryForm
+from .forms import MoodEntryForm, CustomUserCreationForm
 from .models import MoodEntry
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponse
+from django.views.decorators.csrf import csrf_protect
 
+@login_required
+def profile_view(request):
+    return render(request, 'profile.html')
+
+@csrf_protect
 @login_required
 def submit_mood(request):
     if request.method == 'POST':
-        form = MoodEntryForm(request.POST)
-        if form.is_valid():
-            mood_entry = form.save(commit=False)
-            mood_entry.user = request.user
-            mood_entry.save()
-            return redirect('mood_history')
-    else:
-        form = MoodEntryForm()
-    return render(request, 'submit_mood.html', {'form': form})
+        mood = request.POST.get('mood')
+        # Save mood to DB if needed
+        print(f"{request.user.username} selected mood: {mood}")
+    return redirect('profile')
 
 @login_required
 def mood_history(request):
@@ -29,12 +30,12 @@ def home(request):
 
 def register(request):
     if request.method == 'POST':
-        form = UserCreationForm(request.POST)
+        form = CustomUserCreationForm(request.POST)
         if form.is_valid():
             form.save()
-            return redirect('login')  # after register, go to login
+            return redirect('login')
     else:
-        form = UserCreationForm()
+        form = CustomUserCreationForm()
     return render(request, 'registration/register.html', {'form': form})
 
 def welcome(request):

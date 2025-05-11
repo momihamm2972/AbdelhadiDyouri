@@ -1,27 +1,23 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>User Profile</title>
-</head>
-<body>
-    <h1>User Profile</h1>
+{% extends "base.html" %}
 
-    <p><strong>Username:</strong> {{ username }}</p>
-    <p><strong>Date Joined:</strong> {{ date_joined }}</p>
-    <p><strong>Last Login:</strong> {{ last_login }}</p>
+{% block title %}Profile{% endblock %}
 
-    <!-- Logout Button -->
-    <form action="{% url 'logout' %}" method="post">
+{% block content %}
+<h1>Hello {{ user.username }}!</h1>
+<p>Joined: {{ user.date_joined }}</p>
+<p>Last login: {{ user.last_login }}</p>
+<p><a href="{% url 'logout' %}">Logout</a></p>
+
+<div class="buttons">
+    <form method="post" action="{% url 'submit_mood' %}">
         {% csrf_token %}
-        <button type="submit">Logout</button>
+        <input type="hidden" name="mood" value="smile">
+        <button type="submit" class="smile">😊 Smile</button>
     </form>
-
-    <!-- Add Mood Buttons -->
-    <h2>How are you feeling?</h2>
-    <form action="{% url 'submit_mood' %}" method="post">
+    <form method="post" action="{% url 'submit_mood' %}">
         {% csrf_token %}
-        <button type="submit" name="mood" value="smile">😊 Smile</button>
-        <button type="submit" name="mood" value="angry">😡 Angry</button>
+        <input type="hidden" name="mood" value="angry">
+        <button type="submit" class="angry">😠 Angry</button>
     </form>
-</body>
-</html>
+</div>
+{% endblock %}

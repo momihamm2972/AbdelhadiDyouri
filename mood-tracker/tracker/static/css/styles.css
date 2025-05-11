@@ -1,0 +1,124 @@
+/* General page styling */
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Poppins', Arial, sans-serif;
+    background: linear-gradient(135deg, rgba(15,111,191,255), rgba(140,254,196,255));
+    color: #333;
+    min-height: 100vh;
+}
+
+/* Container */
+.container {
+    max-width: 700px;
+    margin: 40px auto;
+    background-color: white;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+}
+
+/* Titles */
+.title {
+    text-align: center;
+    font-size: 2em;
+    margin-bottom: 30px;
+    color: rgba(15,111,191,255);
+}
+
+/* Form styling */
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+label {
+    font-weight: 600;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="password"],
+select,
+textarea {
+    padding: 12px;
+    border-radius: 8px;
+    border: 2px solid rgba(15,111,191,255);
+    font-size: 16px;
+    width: 100%;
+    box-sizing: border-box;
+    transition: border-color 0.3s;
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+    border-color: rgba(140,254,196,255);
+    outline: none;
+}
+
+/* Buttons */
+button,
+input[type="submit"],
+.back-button {
+    background-color: rgba(15,111,191,255);
+    color: white;
+    padding: 12px 24px;
+    font-size: 16px;
+    font-weight: 600;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    text-decoration: none;
+    display: inline-block;
+    text-align: center;
+}
+
+button:hover,
+input[type="submit"]:hover,
+.back-button:hover {
+    background-color: rgba(12, 91, 158, 255);
+}
+
+/* Mood table */
+.mood-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+.mood-table th,
+.mood-table td {
+    border: 1px solid #ccc;
+    padding: 12px;
+    text-align: center;
+    font-size: 16px;
+}
+
+.mood-table th {
+    background-color: rgba(140,254,196,255);
+    color: #333;
+}
+
+/* Message / alert styling */
+.message {
+    padding: 15px;
+    background-color: rgba(140,254,196,255);
+    color: #333;
+    border-radius: 8px;
+    margin-bottom: 20px;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .container {
+        margin: 20px;
+        padding: 20px;
+    }
+
+    .title {
+        font-size: 1.5em;
+    }
+}

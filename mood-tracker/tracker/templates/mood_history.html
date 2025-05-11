@@ -1,15 +1,30 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Mood History</title>
-</head>
-<body>
-    <h1>Mood History</h1>
-    <ul>
-        {% for mood in moods %}
-            <li>{{ mood.date }} - {{ mood.mood }}</li>
-        {% endfor %}
-    </ul>
-    <a href="{% url 'profile' %}">Back to Profile</a>
-</body>
-</html>
+{% extends "base.html" %}
+{% load static %}
+{% block title %}Mood History{% endblock %}
+{% block content %}
+<div class="container">
+    <h1 class="title">Mood History</h1>
+    {% if moods %}
+        <table class="mood-table">
+            <thead>
+                <tr>
+                    <th>Mood</th>
+                    <th>Date</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for mood in moods %}
+                <tr>
+                    <td>{{ mood.mood }}</td>
+                    <td>{{ mood.date|date:"F j, Y" }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% else %}
+        <p>No mood entries found.</p>
+    {% endif %}
+
+    <a href="{% url 'profile' %}" class="back-button">Back to Profile</a>
+</div>
+{% endblock %}

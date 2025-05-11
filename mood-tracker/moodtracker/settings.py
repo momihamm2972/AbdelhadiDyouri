@@ -55,7 +55,7 @@ ROOT_URLCONF = 'moodtracker.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [BASE_DIR / "tracker/templates"],
+        'DIRS': [BASE_DIR / "tracker" / "templates"],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
