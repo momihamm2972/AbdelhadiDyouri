@@ -3,8 +3,8 @@ version: '3'
 services:
   db:
     image: postgres:13
-    volumes:
-      - postgres_data:/var/lib/postgresql/data
+    # volumes:
+    #   - postgres_data:/var/lib/postgresql/data
     environment:
       POSTGRES_DB: moodtracker
       POSTGRES_USER: user
@@ -24,8 +24,8 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
-    volumes:
-      - .:/app
+    # volumes:
+    #   - .:/app
     ports:
       - "8000:8000"
     depends_on:
@@ -37,5 +37,5 @@ networks:
   moodtracker_network:
     driver: bridge
 
-volumes:
-  postgres_data:
+# volumes:
+#   postgres_data:
